@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #progress {
+            -webkit-appearance: none;
+        }
+
+        #progress::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            background-color: white;
+            width: 25px;
+            height: 25px;
+            border: 8px solid #00739B;
+            border-radius: 50%;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.22);
+        }
+
+        #volumeBar {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        #volumeBar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #00739B;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #volumeBar::-moz-range-thumb {
+            background-color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+</head>
+
+<body class="bg-[#0A1D32] font-sans flex justify-center items-center h-screen">
+    <div class="glass rounded-3xl p-6 text-center w-80">
+
+        <div class="bg-auto rounded-2xl h-60 mb-4 bg-no-repeat bg-center"
+            style="background-image: url('Thumbnail.jpg')"></div>
+
+        <h2 class="text-sm font-semibold pt-3px text-[#CCCCCC] text-left mt-20px">BIRDS OF A FEATHER</h2>
+        <h2 class="text-sm font-normal mb-4 text-[#CCCCCC] text-left">Billie Eilish </h2>
+
+        <audio id="song" class="w-full mb-2 text-white">
+            <source src="birds_of_a_feather.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <input type="range" value="0" id="progress" class="w-full h-1.5 bg-white rounded cursor-pointer mt-2 mb-2">
+        <div class="relative mb-2 mb-4">
+            <span id="currentTime" class="text-xs text-[#CCCCCC] absolute left-0">0:00</span>
+            <span id="totalTime" class="text-xs text-[#CCCCCC] absolute right-0">0:00</span>
+        </div>
+
+        <div class="controls space-x-1 flex justify-center items-center mb-5">
+            <button id="fastBackward" class="text-white font-bold py-2 px-4 rounded">
+                <a><i class="fa-solid fa-backward" style="font-size: 30px;"></i></a>
+            </button>
+
+            <button class="text-white font-bold py-2 px-2 rounded" onclick="playPause()">
+                <a><i class="fa-solid fa-play" id="ctrlIcon" style="font-size: 30px;"></i></a>
+            </button>
+
+            <button id="fastForward" class="text-white font-bold py-2 px-4 rounded">
+                <a><i class="fa-solid fa-forward" style="font-size: 30px;"></i></a>
+            </button>
+
+        </div>
+
+        <div class="speaker flex items-center justify-center space-x-2">
+
+            <div class="text-white">
+                <i class="fa-solid fa-volume-low"></i>
+            </div>
+
+            <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="1"
+                class="w-48 h-1 bg-[#00739B] mx-8 rounded cursor-pointer appearance-none">
+
+            <div class="text-white">
+                <i class="fa-solid fa-volume-high"></i>
+            </div>
+        </div>
+
+
+
+        <script src="script.js"></script>
+
+
+    </div>
+</body>
+
+</html>
